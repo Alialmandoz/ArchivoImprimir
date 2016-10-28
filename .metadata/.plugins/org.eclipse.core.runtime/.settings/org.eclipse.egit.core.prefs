@@ -1,3 +1,4 @@
-GitRepositoriesView.GitDirectories=D\:\\Documentos\\Archivo imprimir\\cargaClientesGit\\.git;
-GitRepositoriesView.GitDirectories.relative=cargaClientesGit\\.git;
+GitRepositoriesView.GitDirectories=D\:\\Documentos\\Archivo imprimir\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;
+RepositorySearchDialogSearchPath=D\:\\Documentos\\Archivo imprimir\\.git
 eclipse.preferences.version=1

@@ -10,10 +10,6 @@ import archivoImprimir.gestion.Cliente;
 import archivoImprimir.gestion.OrdenTrabajo;
 import archivoImprimir.gestion.Trabajo;
 
-/**
- * @author Ivan
- *
- */
 public class Mostrador {
 	
 	
@@ -55,14 +51,13 @@ public class Mostrador {
     	
     	
     	
-    	printCliente();
+    	imprimirTablaCliente();
     	
     } 
 
 
 
 
-	
 	public static void crearCliente(Long id, String nombre, String apellido,String mail, Long telefono ) {
 		
     	Cliente cliente = new Cliente(id, nombre, apellido, mail, telefono);
@@ -78,9 +73,6 @@ public class Mostrador {
 	}
 	
 	
-	/**
-	 * @param idCliente : id del cliente a que se asociara esta orden
-	 */
 	public static void crearOrdenTrabajo(Long idCliente){
 		EntityManager man = emf.createEntityManager();
 		
@@ -97,23 +89,8 @@ public class Mostrador {
     	man.close();
 	}
 	
-	public static void crearTrabajo(Long idOrdenTrabajo,Long idTrabajo) {
-		EntityManager man = emf.createEntityManager();
-		
-		OrdenTrabajo ot = man.find(OrdenTrabajo.class, idOrdenTrabajo);
-		Trabajo trabajo = new Trabajo(idTrabajo);
-		
-
-    	man.getTransaction().begin();
-    	
-    	man.merge(ot);
-    	man.persist(trabajo);
-    	
-    	man.getTransaction().commit();
-    	man.close();
-		
-	}
-	public static void printCliente() {
+	
+	public static void imprimirTablaCliente() {
 		EntityManager man = emf.createEntityManager();
 		
 		@SuppressWarnings("unchecked")
@@ -125,7 +102,7 @@ public class Mostrador {
 	}
 
 	
-	public static void printOrden() {
+	public static void imprimirOt() {
 		
 		
 	}
