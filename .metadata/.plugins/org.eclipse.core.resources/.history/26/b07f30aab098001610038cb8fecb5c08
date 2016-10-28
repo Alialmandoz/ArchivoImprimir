@@ -1,0 +1,28 @@
+package test;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import ali.almandoz.hibernate.modelo.Empleado;
+
+public class TestEmpleados {
+	
+	private static EntityManager manager;
+	
+	private static EntityManagerFactory emf;
+	
+	public static void main(String[] args) {
+		
+		emf = Persistence.createEntityManagerFactory("Persistencia");
+		manager = emf.createEntityManager();
+		
+		@SuppressWarnings({ "unchecked" })
+		List<Empleado> empleados = (List<Empleado>)manager.createQuery("FROM Empleado").getResultList();
+		System.out.println("en la base de datos hay "+empleados.size()+" empleados");
+
+	}
+
+}

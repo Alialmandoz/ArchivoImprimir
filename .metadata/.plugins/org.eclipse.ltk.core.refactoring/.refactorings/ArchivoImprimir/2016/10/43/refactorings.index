@@ -1,0 +1,10 @@
+1477362615064	Extract method 'putEmpleado'
+1477368680490	Delete element
+1477443912576	Rename field 'listaLibros'
+1477444005697	Infer generic type arguments
+1477525154311	Rename package 'archivoImprimi.gestion'
+1477528874209	Extract method 'crearCliente'
+1477538052720	Rename method 'imprimir'
+1477691228812	Delete element
+1477691233435	Delete element
+1477693398231	Rename method 'imprimirTablaCliente'

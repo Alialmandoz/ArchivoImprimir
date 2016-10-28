@@ -1,0 +1,40 @@
+package test;
+
+import java.time.*;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import ali.almandoz.hibernate.modelo.Direccion;
+import ali.almandoz.hibernate.modelo.Empleado;
+
+public class TestEmpleados {
+
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
+
+
+	public static void main(String[] args) {
+		EntityManager manager = emf.createEntityManager();
+
+		Empleado e = new Empleado(10L, "Almandoz", "Ivan", LocalDate.of(1984, 01, 22));
+		e.setDireccion(new Direccion(15L, "direccion", "localidad", "provincia", "pais"));
+		manager.getTransaction().begin();
+		manager.persist(e);
+		manager.getTransaction().commit();
+		imprimirTodo();
+		manager.close();
+
+	}
+
+	private static void imprimirTodo() {
+		EntityManager manager = emf.createEntityManager();
+		@SuppressWarnings({ "unchecked" })
+		List<Empleado> empleados = (List<Empleado>) manager.createQuery("FROM Empleado").getResultList();
+		System.out.println("en la base de datos hay " + empleados.size() + " empleados");
+		for (Empleado empleado : empleados) {
+			System.out.println(empleado.toString());
+		}
+		manager.close();
+	}
+
+}

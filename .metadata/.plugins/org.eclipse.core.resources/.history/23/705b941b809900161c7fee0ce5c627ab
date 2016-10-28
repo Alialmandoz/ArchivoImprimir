@@ -1,0 +1,48 @@
+package test;
+
+import java.util.GregorianCalendar;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import ali.almandoz.hibernate.modelo.Empleado;
+
+public class TestEmpleados {
+	
+	private static EntityManager manager;
+	
+	private static EntityManagerFactory emf;
+	
+	private static void imprimirTodo() {
+		@SuppressWarnings({ "unchecked" })
+		List<Empleado> empleados = (List<Empleado>)manager.createQuery("FROM Empleado").getResultList();
+		System.out.println("en la base de datos hay "+empleados.size()+" empleados");
+		for (Empleado empleado : empleados) {
+			System.out.println(empleado.toString());
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		emf = Persistence.createEntityManagerFactory("Persistencia");
+		
+		manager = emf.createEntityManager();
+		
+		Empleado e = new Empleado(10L, "Almandoz", "Ivan", new GregorianCalendar(1984,0,22).getTime());
+		
+		manager.getTransaction().begin();
+		manager.persist(e);
+		manager.getTransaction().commit();
+		
+		imprimirTodo();
+		
+		
+	}
+
+	
+
+}

@@ -1,0 +1,47 @@
+package archivoImprimir.gestion;
+
+import java.util.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ORDEN_TRABAJO")
+public class OrdenTrabajo {
+
+
+
+
+	@Id
+	@Column(name= "ID_ORDEN_TRABAJO")
+    private Long id;
+
+	@OneToMany(mappedBy = "ordenTrabajo", cascade = CascadeType.ALL)
+    private List<Trabajo> trabajos = new ArrayList<>();
+
+	@Column(name= "ESTADO_TRABAJO")
+    private EstadoTrabajo estado;
+
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_CLIENTE")
+    private Cliente cliente;
+
+
+	@Column(name = "TOTAL")
+    private int total;
+
+	
+	
+    public OrdenTrabajo() {
+    }
+    
+    
+}

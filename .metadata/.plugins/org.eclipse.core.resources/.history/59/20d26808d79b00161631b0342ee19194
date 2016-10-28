@@ -1,0 +1,43 @@
+package archivoImprimir.gestion;
+
+import java.util.ArrayList;
+
+public class Cliente {
+
+    /**
+     * Default constructor
+     */
+    public Cliente() {
+    }
+
+    /**
+     * 
+     */
+    private Long id;
+
+    /**
+     * 
+     */
+    private String nombre;
+
+    /**
+     * 
+     */
+    private String apellido;
+
+    /**
+     * 
+     */
+    private String mail;
+
+    /**
+     * 
+     */
+    private int telefono;
+
+    /**
+     * 
+     */
+    private ArrayList<OrdenTrabajo> ordenesTrabajo;
+
+}

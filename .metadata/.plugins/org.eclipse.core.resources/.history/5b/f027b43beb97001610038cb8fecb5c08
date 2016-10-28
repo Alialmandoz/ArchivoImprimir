@@ -1,0 +1,5 @@
+package ali.almandoz.hibernate.modelo;
+
+public class Empleado {
+
+}
