@@ -1,0 +1,43 @@
+package gestion.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import archivoImprimir.gestion.pojo.OrdenTrabajo;
+import archivoImprimir.gestion.pojo.Trabajo;
+
+public class TrabajoDao {
+	
+	
+	private static EntityManagerFactory emf = Emf.emf;
+	private static EntityManager man = emf.createEntityManager();
+	// Create, Read, Update and Delete
+	
+	public static Trabajo createTrabajo(Long idOrdenTrabajo,Long idTrabajo) {
+		
+		
+		OrdenTrabajo ot = man.find(OrdenTrabajo.class, idOrdenTrabajo);
+		Trabajo trabajo = new Trabajo(idTrabajo,ot);
+    	man.getTransaction().begin();
+    	man.merge(ot);
+    	man.merge(trabajo);
+    	man.getTransaction().commit();
+    	man.close();
+		return trabajo;
+	}
+	
+	public static Trabajo readTrabajo(Long idTrabajo) {
+		
+		@SuppressWarnings("unchecked")
+		List<Trabajo> trabajos = (List<Trabajo>) man.createQuery(
+				"select id from Trabajo t where id="+idTrabajo);
+		if (trabajos.size()==1) {
+			return trabajos.get(0);
+		}else{System.out.println("MAs de un trabajo fue elejido.");}
+		
+		
+		return null;
+		
+	}
+}

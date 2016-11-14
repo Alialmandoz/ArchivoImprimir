@@ -5,10 +5,6 @@
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 
   <persistence-unit name="Persistencia">
-  <class>ali.almandoz.hibernate.modelo.Empleado</class>
-  <class>ali.almandoz.hibernate.modelo.Direccion</class>
-  <class>ali.almandoz.hibernate.modelo.Autor</class>
-  <class>ali.almandoz.hibernate.modelo.Libro</class>
   <class>archivoImprimir.gestion.Cliente</class>
   <class>archivoImprimir.gestion.OrdenTrabajo</class>
   <class>archivoImprimir.gestion.Trabajo</class>
@@ -20,7 +16,7 @@
         <property name="javax.persistence.jdbc.user" value="sa" />
         <property name="javax.persistence.jdbc.password" value="" />
         <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-        <property name="hibernate.hbm2ddl.auto" value="create" />
+        <property name="hibernate.hbm2ddl.auto" value="update" />
     </properties>
   </persistence-unit>
 

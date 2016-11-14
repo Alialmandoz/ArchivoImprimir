@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<appconfig>
+	<dbType>MYSQL</dbType>
+	<driver>com.mysql.jdbc.Driver</driver>
+      	<jdbcConnectionString>jdbc:mysql://127.0.0.1/hbnPojoTest</jdbcConnectionString>
+	<databaseIP>localhost</databaseIP>
+	<databaseCatalog>someDBName</databaseCatalog>
+	<databaseUsername>root</databaseUsername>
+	<databasePassword>abcdefgh</databasePassword>
+	<sourceTarget>D:/Workspace/yourProject</sourceTarget>
+	<projectName>yourProjectName</projectName>
+	<topLevel>com.yourcompany</topLevel>
+	<libPath>libs</libPath>
+	<schemaStrategy>PARTIAL</schemaStrategy>
+</appconfig>

@@ -1,0 +1,9 @@
+package archivoImprimir.gestion.POJO;
+
+/**
+ * 
+ */
+public enum TipoTrabajo {
+    granFormato,
+    imprenta
+}

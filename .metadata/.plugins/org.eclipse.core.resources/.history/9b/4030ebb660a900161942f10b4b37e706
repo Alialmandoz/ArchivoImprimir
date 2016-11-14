@@ -1,0 +1,143 @@
+package test;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import archivoImprimir.gestion.pojo.Cliente;
+import archivoImprimir.gestion.pojo.EstadoTrabajo;
+import archivoImprimir.gestion.pojo.OrdenTrabajo;
+import archivoImprimir.gestion.pojo.TipoTrabajo;
+import archivoImprimir.gestion.pojo.Trabajo;
+import gestion.dao.OrdenTrabajoDao;
+import gestion.dao.TrabajoDao;
+
+/**
+ * @author Ivan
+ *
+ */
+public class Mostrador {
+
+	@SuppressWarnings("unused")
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
+
+	public static void main(String[] args) {
+
+		OrdenTrabajoDao manOrden = new OrdenTrabajoDao();
+//
+		manOrden.createOrden();
+
+		manOrden.readOrden(33l);
+
+		TrabajoDao manTrab = new TrabajoDao();
+
+//		manTrab.createTrabajo();
+		manTrab.updateEstado(1l, EstadoTrabajo.ListoParaEntegar);
+		manTrab.updateTotal(1l, 50000);
+//		manTrab.updateDetalle(1l, "el cliente un capo dejo 45000 de propina para los pibes");
+		manTrab.updateTipo(1l, TipoTrabajo.granFormato);
+
+	}
+//
+//	public static void crearCliente(String nombre, String apellido, String mail, Long telefono) {
+//
+//		System.out.println("creando a " + nombre + " " + apellido);
+//		Cliente cliente = new Cliente(nombre, apellido, mail, telefono);
+//		EntityManager man = emf.createEntityManager();
+//
+//		@SuppressWarnings("unchecked")
+//		List<Object> lista = man
+//				.createQuery("from Cliente c where nombre = '" + nombre + "' and apellido ='" + apellido + "'")
+//				.getResultList();
+//		// System.out.println(lista.size());
+//		if (lista.size() == 0) {
+//			man.getTransaction().begin();
+//
+//			man.persist(cliente);
+//
+//			man.getTransaction().commit();
+//
+//			man.close();
+//
+//		} else {
+//			System.out.println("el cliente " + cliente.getNombre() + " " + cliente.getApellido() + " ya existe");
+//
+//		}
+//	}
+//
+//	/**
+//	 * @param idCliente
+//	 *            : id del cliente a que se asociara esta orden
+//	 */
+//	public static void crearOrdenTrabajo(String nombre, String apellido, int total) {
+//		EntityManager man = emf.createEntityManager();
+//
+//		@SuppressWarnings("unchecked")
+//
+//		List<Object> lista = man
+//				.createQuery("from Cliente c where nombre = '" + nombre + "' and apellido ='" + apellido + "'")
+//				.getResultList();
+//		Cliente cli = null;
+//		if (lista.size() == 1) {
+//			cli = (Cliente) lista.get(0);
+//		} else {
+//			System.out.println("no anduvo");
+//		}
+//		OrdenTrabajo ot = new OrdenTrabajo(cli, total);
+//		man.getTransaction().begin();
+//		man.merge(cli);
+//		man.persist(ot);
+//		man.getTransaction().commit();
+//		man.close();
+//		System.out.println("orden " + ot.getId() + " agregada a " + cli.getNombre() + " " + cli.getApellido());
+//	}
+//
+//	/**
+//	 * @param idOrdenTrabajo
+//	 *            orden a a la que se asociara este trabajo
+//	 * @param idTrabajo
+//	 *            identificador unico del trabajo
+//	 */
+//	public static void crearTrabajo(Long idOrdenTrabajo, Long idTrabajo) {
+//		EntityManager man = emf.createEntityManager();
+//
+//		OrdenTrabajo ot = man.find(OrdenTrabajo.class, idOrdenTrabajo);
+//		Trabajo trabajo = new Trabajo(idTrabajo, ot);
+//		man.getTransaction().begin();
+//		man.merge(ot);
+//		man.merge(trabajo);
+//		man.getTransaction().commit();
+//		man.close();
+//
+//	}
+//
+//	public static void printCliente(String nombre, String apellido) {
+//		EntityManager man = emf.createEntityManager();
+//		@SuppressWarnings("unchecked")
+//		List<Object> lista = man
+//				.createQuery("from Cliente c where nombre = '" + nombre + "' and apellido ='" + apellido + "'")
+//				.getResultList();
+//		for (Object cliente : lista) {
+//			System.out.println(cliente.toString());
+//		}
+//	}
+//
+//	public static void printOrden(Long idOrdenTrabajo) {
+//
+//		EntityManager man = emf.createEntityManager();
+//
+//		OrdenTrabajo orden = man.find(OrdenTrabajo.class, idOrdenTrabajo);
+//		@SuppressWarnings("unchecked")
+//
+//		List<Object> trabajos = (List<Object>) man
+//				.createQuery("select ot.listaTrabajos from OrdenTrabajo ot inner join ot.listaTrabajos");
+//		System.out.println(orden);
+//		for (Object object : trabajos) {
+//			System.out.println(object);
+//
+//		}
+//
+//	}
+
+}

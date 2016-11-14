@@ -1,0 +1,127 @@
+package archivoImprimir.gestion;
+
+import java.util.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Persistence;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ORDEN_TRABAJO")
+public class OrdenTrabajo {
+
+
+	@Id
+	@Column(name= "ID_ORDEN_TRABAJO")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+
+	
+	@Column(name = "LISTA_TRABAJOS")
+	@OneToMany(mappedBy = "ordenTrabajo", cascade = CascadeType.ALL)
+    private static List<Trabajo> trabajos = new ArrayList<>();
+
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_CLIENTE")
+    private Cliente cliente;
+
+
+	@Column(name = "TOTAL")
+    private int total;
+
+	
+	
+    public OrdenTrabajo() {
+    
+    }
+    
+    public OrdenTrabajo(Cliente cliente, int total){
+    	this.cliente = cliente;
+    	this.total = total;
+    }
+
+    public void adjuntarTrabajo(Trabajo trabajo) {
+    	trabajos.add(trabajo);
+		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
+
+	public static void setTrabajos(List<Trabajo> trabajos) {
+		OrdenTrabajo.trabajos = trabajos;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	
+	public void getTrabajos() {
+		
+		for (Trabajo trabajo : trabajos) {
+			System.out.println(trabajo);
+			
+		}
+		
+		
+	}
+	
+	
+	
+//	public void getTrabajos(EntityManager man,Long id) {
+//
+//    	@SuppressWarnings("unchecked")
+//		List <Trabajo>lista = man.createQuery("from Trabajo where id ="+id).getResultList();
+//		for (Trabajo trabajo : lista) {
+//			if (trabajo != null) {
+//				System.out.println("Trabajo: "+trabajo.toString());
+//			}else{System.out.println("nada para mostrar");}
+//			
+//			}
+//		}
+	
+	
+
+	@Override
+	public String toString() {
+		return    "\n"+"....................................."
+				+ "\n"+"OrdenTrabajo N:" + id+"\n" 
+				+ " Cliente: " + cliente.getNombre()+" "+cliente.getApellido() +"\n"
+				+ "\n"+"trabajos:" +this.getTrabajos() +"\n" 
+				+ " total: " + total+"\n" 
+				+ "....................................."+"\n";
+	}
+    
+     
+}

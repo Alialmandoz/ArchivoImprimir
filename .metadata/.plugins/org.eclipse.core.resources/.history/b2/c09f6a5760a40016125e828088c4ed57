@@ -1,0 +1,10 @@
+package gestion.dao;
+
+public class TrabajoDao {
+	EmfDao emf = new EmfDao();
+	
+	emf.
+	
+	
+
+}

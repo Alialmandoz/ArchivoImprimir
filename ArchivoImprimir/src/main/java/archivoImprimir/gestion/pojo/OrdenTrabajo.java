@@ -1,4 +1,4 @@
-package archivoImprimir.gestion;
+package archivoImprimir.gestion.pojo;
 
 import java.util.*;
 
@@ -24,13 +24,14 @@ public class OrdenTrabajo {
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-	@OneToMany(mappedBy = "ordenTrabajo", cascade = CascadeType.ALL)
+	
 	@Column(name = "LISTA_TRABAJOS")
-    private static List<Trabajo> trabajos = new ArrayList<>();
+	@OneToMany(mappedBy = "ordenTrabajo", cascade = CascadeType.ALL)
+    private static List<Trabajo> listaTrabajos = new ArrayList<>();
 
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_CLIENTE")
+	@ManyToOne(optional=false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_CLIENTE",referencedColumnName="ID_CLIENTE" )
     private Cliente cliente;
 
 
@@ -43,12 +44,66 @@ public class OrdenTrabajo {
     
     }
     
-    public OrdenTrabajo(Cliente cliente){
+    public OrdenTrabajo(Cliente cliente, int total){
     	this.cliente = cliente;
+    	this.total = total;
     }
 
     public void adjuntarTrabajo(Trabajo trabajo) {
-    	trabajos.add(trabajo);
+    	listaTrabajos.add(trabajo);
 		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
+
+	public static void setTrabajos(List<Trabajo> trabajos) {
+		OrdenTrabajo.listaTrabajos = trabajos;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	
+	public List<Trabajo> getTrabajos() {
+		return listaTrabajos;
+		
+	}
+	
+	public String ListarTrabajos(){
+		String lista = null;
+		
+		for (Trabajo trabajo : listaTrabajos) {
+			lista = trabajo.getId().toString();
+		}
+		return lista;
+		}
+
+	@Override
+	public String toString() {
+		return    "\n"+"....................................."
+				+ "\n"+"OrdenTrabajo N:" + id+"\n"
+//				+ " Cliente: " + cliente.getNombre()+" "+cliente.getApellido() +"\n"
+				+ " total: " + total+"\n" 
+				+ "....................................."+"\n";
 	}
 }

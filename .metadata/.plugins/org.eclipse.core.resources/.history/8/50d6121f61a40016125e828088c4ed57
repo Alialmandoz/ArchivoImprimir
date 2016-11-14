@@ -1,0 +1,12 @@
+package gestion.dao;
+
+public class EmfDao {
+	
+	public EmfDao() {
+	}
+	
+	
+
+	
+	
+}

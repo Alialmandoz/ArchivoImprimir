@@ -1,10 +1,10 @@
-package archivoImprimir.gestion;
-
-import java.util.ArrayList;
+package archivoImprimir.gestion.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,6 +18,7 @@ import javax.persistence.Table;
 public class Trabajo {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID_TRABAJO")
     private Long id;
 
@@ -46,13 +47,80 @@ public class Trabajo {
      * 
      */
     @Column(name = "DETALLES")
-    private ArrayList<String> detallesTrabajo;
+    private String detallesTrabajo;
     
     public Trabajo() {
     }
     
-    public Trabajo(Long id){
+    public Trabajo(Long id, OrdenTrabajo ordenTabajo){
     	this.id = id;
+    	this.ordenTrabajo = ordenTabajo;
     }
+    
+    
+
+	@Override
+	public String toString() {
+		return "Trabajo id: " + id + "\n"
+				+"....................................." + "\n"
+				+ " tipoTrabajo = " + tipoTrabajo + "\n"
+				+ " estado = "+ estado+ "\n"
+				+ " total = " + total + "\n"
+				+ " detallesTrabajo = " + detallesTrabajo + "\n"
+				+ " OrdenTrabajo = " + ordenTrabajo.getId() + "\n"
+				+".....................................";
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public OrdenTrabajo getOrdenTrabajo() {
+		return ordenTrabajo;
+	}
+
+	public void setOrdenTrabajo(OrdenTrabajo ordenTrabajo) {
+		this.ordenTrabajo = ordenTrabajo;
+	}
+
+	public TipoTrabajo getTipoTrabajo() {
+		return tipoTrabajo;
+	}
+
+	public void setTipoTrabajo(TipoTrabajo tipoTrabajo) {
+		this.tipoTrabajo = tipoTrabajo;
+	}
+
+	public EstadoTrabajo getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoTrabajo estado) {
+		this.estado = estado;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public String getDetallesTrabajo() {
+		return detallesTrabajo;
+	}
+
+	public void setDetallesTrabajo(String detalle) {
+		this.detallesTrabajo = detalle;
+	}
+    
+    
+    
+    
 
 }
