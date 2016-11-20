@@ -102,8 +102,14 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "....................................."+"\n"+"Cliente id = " + id +"\n"+"nombre = " + nombre +"\n"+"apellido = " + apellido +"\n"+ "mail = " + mail +"\n"+"telefono = "
-				+ telefono +"\n"+"ordenesTrabajo = " + ordenesTrabajo+"\n"+"....................................."+"\n";
+		return "....................................."
+				+"\n"+"Cliente id = " + id 
+				+"\n"+"nombre = " + nombre 
+				+"\n"+"apellido = " + apellido 
+				+"\n"+ "mail = " + mail 
+				+"\n"+"telefono = "	+ telefono +
+				"\n"+"ordenesTrabajo = " + ordenesTrabajo+"\n"
+				+"....................................."+"\n";
 	}
 	
 	

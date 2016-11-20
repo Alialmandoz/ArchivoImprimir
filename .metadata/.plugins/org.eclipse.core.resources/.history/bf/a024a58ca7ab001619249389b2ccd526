@@ -1,0 +1,15 @@
+package gestion.Ui;
+
+import javax.enterprise.inject.New;
+import javax.swing.table.DefaultTableModel;
+
+import gestion.dao.ClienteDao;
+
+public class Modeloo {
+	String[] columnNames = {"nombre","apellido","email","telefono"};
+	public int rowCount = new ClienteDao().readAllClientes();
+	
+	
+	DefaultTableModel datos = new DefaultTableModel(columnNames, rowCount);
+
+}

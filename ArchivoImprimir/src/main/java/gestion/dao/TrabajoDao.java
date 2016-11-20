@@ -35,6 +35,26 @@ public class TrabajoDao {
 
 	}
 	
+	
+	
+	public void crearTrabajo(Long idOrdenTrabajo) {
+		EntityManager man = emf.createEntityManager();
+
+		OrdenTrabajo ot = man.find(OrdenTrabajo.class, idOrdenTrabajo);
+		Trabajo trabajo = new Trabajo(ot);
+		man.getTransaction().begin();
+		man.merge(ot);
+		man.persist(trabajo);
+		LocalDateTime currentTime = LocalDateTime.now();
+    	trabajo.setDetallesTrabajo("Trabajo encargado el: " + currentTime.toLocalDate());
+		man.getTransaction().commit();
+		man.close();
+
+	}
+	
+	
+	
+	
 	public void readAllTrabajos(){
 		EntityManager man = emf.createEntityManager();
 		@SuppressWarnings("unchecked")

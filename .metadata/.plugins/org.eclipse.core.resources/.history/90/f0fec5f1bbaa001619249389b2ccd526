@@ -1,0 +1,5 @@
+package gestion.dao;
+
+public interface Dao {
+
+}

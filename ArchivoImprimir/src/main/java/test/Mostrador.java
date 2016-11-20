@@ -1,12 +1,7 @@
 package test;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
-import archivoImprimir.gestion.pojo.EstadoTrabajo;
-import archivoImprimir.gestion.pojo.TipoTrabajo;
-import gestion.dao.OrdenTrabajoDao;
-import gestion.dao.TrabajoDao;
+import gestion.Ui.ModeloCliente;
 
 /**
  * @author Ivan
@@ -14,18 +9,19 @@ import gestion.dao.TrabajoDao;
  */
 public class Mostrador {
 
-	@SuppressWarnings("unused")
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
-
 	public static void main(String[] args) {
-
-		OrdenTrabajoDao manOrden = new OrdenTrabajoDao();
-		TrabajoDao manTrab = new TrabajoDao();
-
-		manOrden.listarTrabajos(1l);
-		manOrden.readAllOrdenes();
+		
 	}
-
+//
+//		OrdenTrabajoDao orden = new OrdenTrabajoDao();
+//		TrabajoDao trabajo = new TrabajoDao();
+//		ClienteDao cliente = new ClienteDao();
+//		orden.updateTotal(33l);
+//		cliente.readAllClientes();
+//		
+//		
+//		
+//	}
 	
 	
 	

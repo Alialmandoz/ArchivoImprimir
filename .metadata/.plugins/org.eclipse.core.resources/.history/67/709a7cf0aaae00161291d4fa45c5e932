@@ -1,0 +1,139 @@
+package gestion.Ui;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import gestion.dao.ClienteDao;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+
+public class UI {
+
+	private JFrame frame;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
+	private JTextField txtEmail;
+	private JTextField txttelefono;
+	private JLabel lblApellido;
+	private JLabel lblEmail;
+	private JLabel lblTelefono;
+	private ModeloCliente modelo= new ModeloCliente();
+	private JTable laTabla;
+	private JPanel panel_3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					UI window = new UI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public UI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 657, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, 0, 784, 561);
+		frame.getContentPane().add(tabbedPane);
+		
+		JPanel cargaCliente = new JPanel();
+		tabbedPane.addTab("Cargar Nuevo Cliente", null, cargaCliente, "Aqui cargas nuevos clientes a la base de datos");
+		cargaCliente.setLayout(null);
+		
+		txtNombre = new JTextField();
+		txtNombre.setBounds(105, 11, 374, 20);
+		cargaCliente.add(txtNombre);
+		txtNombre.setColumns(10);
+		
+		txtApellido = new JTextField();
+		txtApellido.setColumns(10);
+		txtApellido.setBounds(105, 42, 374, 20);
+		cargaCliente.add(txtApellido);
+		
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(105, 76, 374, 20);
+		cargaCliente.add(txtEmail);
+		
+		txttelefono = new JTextField();
+		txttelefono.setColumns(10);
+		txttelefono.setBounds(105, 107, 374, 20);
+		cargaCliente.add(txttelefono);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(49, 17, 46, 14);
+		cargaCliente.add(lblNombre);
+		
+		lblApellido = new JLabel("Apellido");
+		lblApellido.setBounds(49, 48, 46, 14);
+		cargaCliente.add(lblApellido);
+		
+		lblEmail = new JLabel("Email");
+		lblEmail.setBounds(49, 82, 46, 14);
+		cargaCliente.add(lblEmail);
+		lblTelefono = new JLabel("Telefono");
+		lblTelefono.setBounds(49, 113, 46, 14);
+		cargaCliente.add(lblTelefono);
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ClienteDao cliente = new ClienteDao();
+				cliente.crearCliente(txtNombre.getText(), txtApellido.getText(), txtEmail.getText(), Long.parseLong(txttelefono.getText()));
+				modelo.cargar();
+				laTabla.repaint();
+			}
+		});
+		btnAceptar.setBounds(513, 10, 89, 23);
+		cargaCliente.add(btnAceptar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(513, 41, 89, 23);
+		cargaCliente.add(btnCancelar);
+		
+		panel_3 = new JPanel();
+		panel_3.setBounds(32, 195, 582, 293);
+		cargaCliente.add(panel_3);
+		panel_3.setLayout(null);
+		modelo.cargar();
+		laTabla = new JTable(modelo.tableModel);
+		laTabla.setBounds(0, 0, 582, 293);
+		panel_3.add(laTabla);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("Crear Orden de trabajo", null, panel, null);
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Borrar Cliente", null, panel_1, "atencion no se puede deshacer");
+;
+				
+	}
+}

@@ -1,9 +1,0 @@
-package gestion.dao;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-public class Emf {
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
-
-}

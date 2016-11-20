@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import gestion.dao.TrabajoDao;
+
 @Entity
 @Table(name = "ORDEN_TRABAJO")
 public class OrdenTrabajo {
@@ -30,8 +32,8 @@ public class OrdenTrabajo {
     private static List<Trabajo> listaTrabajos = new ArrayList<>();
 
 
-	@ManyToOne(optional=false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_CLIENTE",referencedColumnName="ID_CLIENTE" )
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_CLIENTE")
     private Cliente cliente;
 
 
@@ -44,9 +46,8 @@ public class OrdenTrabajo {
     
     }
     
-    public OrdenTrabajo(Cliente cliente, int total){
+    public OrdenTrabajo(Cliente cliente){
     	this.cliente = cliente;
-    	this.total = total;
     }
 
     public void adjuntarTrabajo(Trabajo trabajo) {
@@ -102,7 +103,7 @@ public class OrdenTrabajo {
 	public String toString() {
 		return    "\n"+"....................................."
 				+ "\n"+"OrdenTrabajo N:" + id+"\n"
-//				+ " Cliente: " + cliente.getNombre()+" "+cliente.getApellido() +"\n"
+				+ " Cliente: " + cliente.getNombre()+" "+cliente.getApellido() +"\n"
 				+ " total: " + total+"\n" 
 				+ "....................................."+"\n";
 	}

@@ -52,12 +52,11 @@ public class Trabajo {
     public Trabajo() {
     }
     
-    public Trabajo(Long id, OrdenTrabajo ordenTabajo){
-    	this.id = id;
+    public Trabajo( OrdenTrabajo ordenTabajo){
     	this.ordenTrabajo = ordenTabajo;
     }
     
-    
+
 
 	@Override
 	public String toString() {
@@ -69,7 +68,7 @@ public class Trabajo {
 				+ " detallesTrabajo = " + detallesTrabajo + "\n"
 				+ " OrdenTrabajo = " + ordenTrabajo.getId() + "\n"
 				+".....................................";
-	}
+	}//    
 
 	public Long getId() {
 		return id;

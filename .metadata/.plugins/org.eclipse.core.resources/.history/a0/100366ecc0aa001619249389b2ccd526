@@ -1,0 +1,117 @@
+package gestion.dao;
+
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import archivoImprimir.gestion.pojo.Cliente;
+import archivoImprimir.gestion.pojo.Trabajo;
+
+
+
+public class ClienteDao {
+
+	private static EntityManagerFactory emf = Emf.emf;
+
+	public void crearCliente(String nombre, String apellido, String mail, Long telefono) {
+
+		nombre = nombre.toLowerCase();
+		apellido = apellido.toLowerCase();
+
+		System.out.println("creando a " + nombre + " " + apellido);
+		Cliente cliente = new Cliente(nombre, apellido, mail, telefono);
+		EntityManager man = emf.createEntityManager();
+
+		@SuppressWarnings("unchecked")
+		List<Object> lista = man
+				.createQuery("from Cliente c where nombre = '" + nombre + "' and apellido ='" + apellido + "'")
+				.getResultList();
+		// System.out.println(lista.size());
+		if (lista.size() == 0) {
+			man.getTransaction().begin();
+
+			man.persist(cliente);
+
+			man.getTransaction().commit();
+
+			man.close();
+
+		} else {
+			System.out.println("el cliente " + cliente.getNombre() + " " + cliente.getApellido() + " ya existe");
+
+		}
+	}
+
+	public void readAllClientes() {
+		EntityManager man = emf.createEntityManager();
+		@SuppressWarnings("unchecked")
+		List<Object> lista = man.createQuery("from Cliente").getResultList();
+		for (Object cliente : lista) {
+			System.out.println(cliente.toString());
+		}
+	}
+
+	public void updateNombre(Long idCliente, String nombre) {
+		EntityManager man = emf.createEntityManager();
+		Cliente cliente = man.find(Cliente.class, idCliente);
+
+		man.getTransaction().begin();
+		man.merge(cliente);
+
+		cliente.setNombre(nombre.toLowerCase());
+
+		man.getTransaction().commit();
+		man.close();
+	}
+
+	public void updateApellido(Long idCliente, String apellido) {
+		EntityManager man = emf.createEntityManager();
+		Cliente cliente = man.find(Cliente.class, idCliente);
+
+		man.getTransaction().begin();
+		man.merge(cliente);
+
+		cliente.setApellido(apellido.toLowerCase());
+
+		man.getTransaction().commit();
+		man.close();
+	}
+
+	public void updateMail(Long idCliente, String mail) {
+		EntityManager man = emf.createEntityManager();
+		Cliente cliente = man.find(Cliente.class, idCliente);
+
+		man.getTransaction().begin();
+		man.merge(cliente);
+
+		cliente.setMail(mail.toLowerCase());
+
+		man.getTransaction().commit();
+		man.close();
+	}
+
+	public void updateTelefono(Long idCliente, Long telefono) {
+		EntityManager man = emf.createEntityManager();
+		Cliente cliente = man.find(Cliente.class, idCliente);
+
+		man.getTransaction().begin();
+		man.merge(cliente);
+
+		cliente.setTelefono(telefono);
+
+		man.getTransaction().commit();
+		man.close();
+	}
+	
+	public void deleteCliente(Long id ){
+		EntityManager man = emf.createEntityManager();
+		
+		 Cliente cliente = man.find(Cliente.class, id);
+		
+		man.getTransaction().begin();
+		man.remove(cliente);
+		man.getTransaction().commit();
+		
+	}
+	
+
+}

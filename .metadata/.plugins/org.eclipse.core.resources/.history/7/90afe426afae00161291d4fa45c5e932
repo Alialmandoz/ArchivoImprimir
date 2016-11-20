@@ -1,0 +1,14 @@
+package gestion.Ui;
+
+import javax.persistence.Table;
+import javax.swing.event.TableModelEvent;
+import javax.swing.table.TableModel;
+import gestion.Ui.ModeloCliente;
+public class LaTabla extends TableModelEvent {
+	
+	public LaTabla(TableModel ModeloCliente.) {
+		super(source);
+		// TODO Auto-generated constructor stub
+	}
+
+}

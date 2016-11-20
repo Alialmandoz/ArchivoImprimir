@@ -1,0 +1,37 @@
+package gestion.Ui;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
+import com.google.common.collect.Lists;
+
+import archivoImprimir.gestion.pojo.Cliente;
+import gestion.dao.ClienteDao;
+
+public class ModeloCliente{
+    DefaultTableModel tableModel = new DefaultTableModel();
+
+    public void cargar() {
+        List<String> columnNames = new ArrayList<String>();
+        List<String[]> rowData = new ArrayList<String[]>();
+        columnNames.add("id");
+        columnNames.add("nombre");
+        columnNames.add("apellido");
+        columnNames.add("Mail");
+        columnNames.add("telefono");
+        
+        ClienteDao cliente = new ClienteDao();
+        
+        List<Cliente> clientes = cliente.getClientes();
+
+        for (Cliente cli : clientes) {
+            rowData.add(new String[] {cli.getId().toString(),cli.getNombre(),cli.getApellido(),cli.getMail(),cli.getTelefono().toString()});
+            
+        }
+       List<String[]>irowData = Lists.reverse(rowData);
+        tableModel = new DefaultTableModel(irowData.toArray(new Object[][] {}), columnNames.toArray());
+        
+    }
+    }

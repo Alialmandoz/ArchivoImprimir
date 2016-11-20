@@ -1,0 +1,55 @@
+package gestion.dao;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import archivoImprimir.gestion.pojo.Cliente;
+import archivoImprimir.gestion.pojo.Trabajo;
+
+public class ClienteDao {
+	
+	private static EntityManagerFactory emf = Emf.emf;
+	
+	public void createCliente(String nombre,String apellido, String mail, int telefono) {
+
+		EntityManager man = emf.createEntityManager();
+		
+		Cliente cliente = new Cliente(nombre,apellido, mail, telefono);
+		 
+    	man.getTransaction().begin();
+    	
+    	man.persist(cliente);
+    	
+    	man.getTransaction().commit();
+    	
+    	man.close();
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

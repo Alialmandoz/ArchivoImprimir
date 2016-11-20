@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+	<addCategory
+		id="custom_1479175973181"
+		name="orden"
+		description="aca crearas ordenes de trabajo para contratar trabajos"
+		visible="true"
+		open="true"
+		nextCategory="org.eclipse.wb.swing.containers"/>
+	<addComponent
+		id="custom_1479251400102"
+		name="JScrollPane"
+		visible="true"
+		class="javax.swing.JScrollPane"
+		category="org.eclipse.wb.swing.containers"/>
+	<removeEntry
+		id="custom_1479251400102"/>
+</commands>
