@@ -1,0 +1,63 @@
+package gestion.Ui;
+
+import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import archivoImprimir.gestion.pojo.Cliente;
+import gestion.dao.ClienteDao;
+
+public class ModeloCliente{
+    TableModel tableModel;
+
+    public void cargar() {
+        List<String> columnNames = new ArrayList<String>();
+        List<String[]> rowData = new ArrayList<String[]>();
+        columnNames.add("id");
+        columnNames.add("nombre");
+        columnNames.add("apellido");
+        columnNames.add("Mail");
+        columnNames.add("telefono");
+        
+        ClienteDao cliente = new ClienteDao();
+        
+        List<Cliente> clientes = cliente.getClientes();
+
+        for (Cliente cli : clientes) {
+            rowData.add(new String[] {cli.getId().toString(),cli.getNombre(),cli.getApellido(),cli.getMail(),cli.getTelefono().toString()});
+        }
+
+        tableModel = new DefaultTableModel(rowData.toArray(new Object[][] {}), columnNames.toArray());
+        
+        final JTable table = new JTable(tableModel);
+        JScrollPane scrollPane = new JScrollPane(table);
+        table.getModel().addTableModelListener(new TableModelListener() {
+
+          public void tableChanged(TableModelEvent e) {
+             System.out.println(e);
+          }
+        });
+
+        table.setValueAt("",0,0);
+        JFrame frame = new JFrame("Resizing Table");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.add(scrollPane, BorderLayout.CENTER);
+
+        frame.setSize(300, 150);
+        frame.setVisible(true);
+        
+        
+        
+        
+    }
+
+}

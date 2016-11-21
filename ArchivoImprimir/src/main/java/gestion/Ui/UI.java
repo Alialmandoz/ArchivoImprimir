@@ -67,27 +67,37 @@ public class UI {
 		tabbedPane.setBounds(0, 0, 784, 561);
 		frame.getContentPane().add(tabbedPane);
 		
+		
+		
+		modelo.cargar();
+		
+	
+		
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("Crear Orden de trabajo", null, panel, null);
+		
 		JPanel cargaCliente = new JPanel();
 		tabbedPane.addTab("Cargar Nuevo Cliente", null, cargaCliente, "Aqui cargas nuevos clientes a la base de datos");
 		cargaCliente.setLayout(null);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(105, 11, 374, 20);
+		txtNombre.setBounds(105, 11, 497, 20);
 		cargaCliente.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtApellido = new JTextField();
-		txtApellido.setBounds(105, 42, 374, 20);
+		txtApellido.setBounds(105, 42, 497, 20);
 		txtApellido.setColumns(10);
 		cargaCliente.add(txtApellido);
 		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(105, 76, 374, 20);
+		txtEmail.setBounds(105, 76, 497, 20);
 		txtEmail.setColumns(10);
 		cargaCliente.add(txtEmail);
 		
 		txttelefono = new JTextField();
-		txttelefono.setBounds(105, 107, 374, 20);
+		txttelefono.setBounds(105, 107, 497, 20);
 		txttelefono.setColumns(10);
 		cargaCliente.add(txttelefono);
 		
@@ -107,12 +117,25 @@ public class UI {
 		cargaCliente.add(lblTelefono);
 		
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(513, 10, 89, 23);
+		btnAceptar.setBounds(105, 138, 89, 23);
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				ClienteDao cliente = new ClienteDao();
-				cliente.crearCliente(txtNombre.getText(), txtApellido.getText(), txtEmail.getText(), Long.parseLong(txttelefono.getText()));
+				cliente.crearCliente(txtNombre.getText(), txtApellido.getText(),
+						txtEmail.getText(), Long.parseLong(txttelefono.getText()));
+				
+				laTabla.getModel().addTableModelListener(new TableModelListener() {
+					@Override
+					public void tableChanged(TableModelEvent e) {
+						System.out.println("tabla cambiada");
+						modelo.cargar();
+						laTabla.setModel(modelo.tableModel);
+					}
+				});
+				
+				
+				
 				modelo.tableModel.fireTableChanged(new TableModelEvent(modelo.tableModel));
 				vaciarCampo(txtApellido);
 				vaciarCampo(txtEmail);
@@ -124,33 +147,22 @@ public class UI {
 		cargaCliente.add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(513, 41, 89, 23);
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				vaciarCampo(txtApellido);
+				vaciarCampo(txtEmail);
+				vaciarCampo(txtNombre);
+				vaciarCampo(txttelefono);
+				
+			}
+		});
+		btnCancelar.setBounds(467, 138, 89, 23);
 		cargaCliente.add(btnCancelar);
-		
-		
-		
-		modelo.cargar();
 		laTabla = new JTable(modelo.tableModel);
 		JScrollPane scrollPane = new JScrollPane(laTabla);
 		scrollPane.setBounds(49, 170, 553, 352);
 		scrollPane.getVerticalScrollBar();
 		cargaCliente.add(scrollPane);
-		
-		laTabla.getModel().addTableModelListener(new TableModelListener() {
-			
-			@Override
-			public void tableChanged(TableModelEvent e) {
-				System.out.println("tabla cambiada");
-				modelo.cargar();
-				laTabla.setModel(modelo.tableModel);
-				
-				
-			}
-		});
-		
-		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Crear Orden de trabajo", null, panel, null);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Borrar Cliente", null, panel_1, "atencion no se puede deshacer");
