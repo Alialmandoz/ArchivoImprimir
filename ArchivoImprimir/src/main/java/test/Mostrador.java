@@ -1,8 +1,5 @@
 package test;
 
-
-import gestion.Ui.ModeloCliente;
-
 /**
  * @author Ivan
  *

@@ -15,4 +15,6 @@
 		category="org.eclipse.wb.swing.containers"/>
 	<removeEntry
 		id="custom_1479251400102"/>
+	<removeCategory
+		id="custom_1479175973181"/>
 </commands>

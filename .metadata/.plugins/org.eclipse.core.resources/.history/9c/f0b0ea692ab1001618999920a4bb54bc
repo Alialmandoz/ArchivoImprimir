@@ -1,0 +1,29 @@
+package gestion.Ui;
+
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+
+public class Modelo {
+	AbstractTableModel model = new DefaultTableModel();
+
+	public JTable crearTabla(Object[] columnas, Object[][] datos) {
+		DefaultTableModel model = new DefaultTableModel(datos,columnas);
+		JTable tabla = new JTable(model);
+		
+		return tabla;
+		}
+	
+	public void crearListener(JTable table ) {
+		table.getModel().addTableModelListener(new TableModelListener() {
+			
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				table.setModel(model);
+			}
+		});
+	}
+
+}

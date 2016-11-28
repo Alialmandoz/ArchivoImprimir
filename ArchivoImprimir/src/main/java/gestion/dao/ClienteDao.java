@@ -1,30 +1,34 @@
 package gestion.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+
+import com.google.common.collect.Lists;
+
 import archivoImprimir.gestion.pojo.Cliente;
 
-
-
 public class ClienteDao {
-	
+
+	public final static String[] COLUMNAS = { "Nombre", "Apellido", "Mail", "Telefono" };
 
 	private static EntityManagerFactory emf = Emf.emf;
-	
-	
-	public List<Cliente> getClientes() {
+
+	public static final ArrayList<String[]> CLIENTES() {
 		EntityManager man = emf.createEntityManager();
 		@SuppressWarnings("unchecked")
-		List<Cliente> lista = man.createQuery("from Cliente").getResultList();
-		
-		
-		return lista;
-		
+		List<Cliente> lista = Lists.reverse(man.createQuery("from Cliente").getResultList());
+		ArrayList<String[]> c = new ArrayList<>();
+
+		for (Cliente cli : lista) {
+
+			c.add(new String[] {cli.getNombre(), cli.getApellido(), cli.getMail(),
+					cli.getTelefono().toString() });
+
+		}
+		return c;
 	}
-	
-	
-	
 
 	public void crearCliente(String nombre, String apellido, String mail, Long telefono) {
 
@@ -54,17 +58,26 @@ public class ClienteDao {
 
 		}
 	}
-	
-	
-	
-	public Cliente readCliente(Long id) {
+
+	public ArrayList<String[]> readCliente(String nombre, String apellido) {
 		EntityManager man = emf.createEntityManager();
 
-		Cliente cliente = man.find(Cliente.class, id);
-		System.out.println(cliente.toString());
-		return cliente;
+		@SuppressWarnings("unchecked")
+		List<Cliente> lista = man
+				.createQuery("from Cliente c where nombre = '" + nombre + "' and apellido ='" + apellido + "'")
+				.getResultList();
+		
+		ArrayList<String[]> c = new ArrayList<>();
+
+		for (Cliente cli : lista) {
+
+			c.add(new String[] {cli.getNombre(), cli.getApellido(), cli.getMail(),
+					cli.getTelefono().toString() });
+
+		}
+		return c;
 	}
-	
+
 	public int contarClientes() {
 		EntityManager man = emf.createEntityManager();
 		@SuppressWarnings("unchecked")
@@ -72,8 +85,7 @@ public class ClienteDao {
 		return lista.size();
 
 	}
-	
-	
+
 	public int readAllClientes() {
 		EntityManager man = emf.createEntityManager();
 		@SuppressWarnings("unchecked")
@@ -135,17 +147,25 @@ public class ClienteDao {
 		man.getTransaction().commit();
 		man.close();
 	}
-	
-	public void deleteCliente(Long id ){
+
+	public void deleteCliente(String nombre, String apellido) {
 		EntityManager man = emf.createEntityManager();
 		
-		 Cliente cliente = man.find(Cliente.class, id);
+		@SuppressWarnings("unchecked")
+		List<Cliente> lista = man
+				.createQuery("from Cliente c where nombre = '" + nombre + "' and apellido ='" + apellido + "'")
+				.getResultList();
 		
-		man.getTransaction().begin();
-		man.remove(cliente);
-		man.getTransaction().commit();
+		for ( Cliente cliente : lista) {
+			System.out.println(cliente);
+			System.out.println(lista.size());
+		}
+		if (lista.size() == 1) {
+			man.createQuery("delete Cliente where nombre = '" + nombre + "' and apellido ='" + apellido + "'");
+			
+		}else{System.out.println("mas de un resultado");}
 		
+
 	}
-	
 
 }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;tabla&apos; in &apos;gestion.Ui.UI&apos; to &apos;tablaCargar&apos;&#x0D;&#x0A;- Original project: &apos;ArchivoImprimir&apos;&#x0D;&#x0A;- Original element: &apos;gestion.Ui.UI.tabla&apos;&#x0D;&#x0A;- Renamed element: &apos;gestion.Ui.UI.tablaCargar&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;tabla&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src\/main\/java&lt;gestion.Ui{UI.java[UI^tabla" name="tablaCargar" references="true" setter="false" stamp="1480343894527" textual="false" version="1.0"/>
+</session>

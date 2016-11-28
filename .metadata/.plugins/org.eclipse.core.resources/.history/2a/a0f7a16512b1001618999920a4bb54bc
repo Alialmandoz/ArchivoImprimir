@@ -1,0 +1,27 @@
+package gestion.Ui;
+
+public class ModeloCliente{
+//    DefaultTableModel tableModel = new DefaultTableModel();
+//
+//    public void cargar() {
+//        List<String> columnNames = new ArrayList<>();
+//        List<String[]> rowData = new ArrayList<>();
+//        columnNames.add("id");
+//        columnNames.add("nombre");
+//        columnNames.add("apellido");
+//        columnNames.add("Mail");
+//        columnNames.add("telefono");
+//        
+//        List<Object> clientes =ClienteDao.CLIENTES();
+//
+//        for (Object cli : clientes) {
+//            rowData.add(new String[] {cli.getId().toString(),cli.getNombre(),cli.getApellido(),cli.getMail(),cli.getTelefono().toString()});
+//            
+//        }
+//       List<String[]>irowData = Lists.reverse(rowData);
+//        tableModel = new DefaultTableModel(irowData.toArray(new Object[][] {}), columnNames.toArray());
+//        
+//    }
+    
+    
+}

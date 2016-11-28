@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="D:\Soft\Librerias Java\hibernate-release-5.2.3.Final\lib\required" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="D:\Soft\Librerias Java\guava googleforjava" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
 		<item value="true" key="group_libraries"/>
@@ -40,7 +40,7 @@
 		<item value="8" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="completion_proposal_size">
-		<item value="364" key="size.y"/>
+		<item value="650" key="size.y"/>
 		<item value="643" key="size.x"/>
 		<item value="221" key="contextSelector.size.y"/>
 		<item value="331" key="contextSelector.size.x"/>

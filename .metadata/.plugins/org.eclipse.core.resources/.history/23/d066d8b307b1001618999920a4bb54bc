@@ -1,0 +1,21 @@
+package gestion.Ui;
+
+import java.util.List;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class Modelo {
+
+	public JTable crearTabla(Object columnas, Object datos) {
+		@SuppressWarnings("unchecked")
+		DefaultTableModel model = new DefaultTableModel(((List<Object>) datos).toArray(new Object[][] {}), ((List<Object>) columnas).toArray());
+		return new JTable(model);
+		
+		
+
+	}
+	
+	
+
+}
