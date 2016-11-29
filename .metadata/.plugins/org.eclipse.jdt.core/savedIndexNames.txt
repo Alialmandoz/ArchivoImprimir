@@ -22,7 +22,6 @@ INDEX VERSION 1.129+D:\Documentos\Archivo imprimir\.metadata\.plugins\org.eclips
 2855899100.index
 1075794691.index
 231416243.index
-1831096956.index
 254438074.index
 1471052190.index
 3454799629.index
