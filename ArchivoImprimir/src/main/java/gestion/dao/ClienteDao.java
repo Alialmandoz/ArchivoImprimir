@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import org.hibernate.Session;
+
 import com.google.common.collect.Lists;
 
 import archivoImprimir.gestion.pojo.Cliente;
@@ -16,6 +18,7 @@ public class ClienteDao {
 	private static EntityManagerFactory emf = Emf.emf;
 
 	public static final ArrayList<String[]> CLIENTES() {
+		System.out.println("Buscando elementos en la base de datos");
 		EntityManager man = emf.createEntityManager();
 		@SuppressWarnings("unchecked")
 		List<Cliente> lista = Lists.reverse(man.createQuery("from Cliente").getResultList());
@@ -148,24 +151,57 @@ public class ClienteDao {
 		man.close();
 	}
 
-	public void deleteCliente(String nombre, String apellido) {
+	
+	
+	
+	public void deleteCliente(String nombre, String apellido){
 		EntityManager man = emf.createEntityManager();
-		
+		Long id = null ;
 		@SuppressWarnings("unchecked")
 		List<Cliente> lista = man
 				.createQuery("from Cliente c where nombre = '" + nombre + "' and apellido ='" + apellido + "'")
 				.getResultList();
 		
 		for ( Cliente cliente : lista) {
-			System.out.println(cliente);
-			System.out.println(lista.size());
-		}
-		if (lista.size() == 1) {
-			man.createQuery("delete Cliente where nombre = '" + nombre + "' and apellido ='" + apellido + "'");
-			
-		}else{System.out.println("mas de un resultado");}
-		
-
+			id = cliente.getId();
 	}
+		Cliente cli = man.find(Cliente.class, id);
+		System.out.println("borrando a "+cli.getNombre()+" "+cli.getApellido());
+		man.getTransaction().begin();
+		man.remove(cli);
+		man.getTransaction().commit();
+		man.close();
 
 }
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

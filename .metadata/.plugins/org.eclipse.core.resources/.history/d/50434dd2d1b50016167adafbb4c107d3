@@ -1,0 +1,31 @@
+package gestion.Ui;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import gestion.dao.ClienteDao;
+
+public class Modelo {
+
+
+	
+	public JTable crearTabla(Object[] columnas, Object[][] datos) {
+		DefaultTableModel model = new DefaultTableModel(datos,columnas);
+		JTable tabla = new JTable(model);
+		
+		return tabla;
+		}
+	
+	public JScrollPane actualizarTabla() {
+		Object[][] datos = ClienteDao.CLIENTES().toArray(new Object[][] {});
+		JTable tabla = crearTabla(ClienteDao.COLUMNAS, datos);
+		JScrollPane scrollPane = new JScrollPane(tabla);
+		scrollPane.getViewport().setView(tabla);
+		scrollPane.setBounds(10, 117, 321, 405);
+		scrollPane.getVerticalScrollBar();
+		return scrollPane;
+
+	}
+
+}

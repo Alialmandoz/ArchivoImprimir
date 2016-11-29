@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.persistence.Column"/>
-<fullyQualifiedTypeName name="javax.print.attribute.standard.MediaSize.Other"/>
-<fullyQualifiedTypeName name="archivoImprimir.gestion.Trabajo"/>
-<fullyQualifiedTypeName name="archivoImprimir.gestion.OrdenTrabajo"/>
 <fullyQualifiedTypeName name="javax.persistence.Id"/>
 <fullyQualifiedTypeName name="javax.management.Query"/>
 <fullyQualifiedTypeName name="org.hibernate.Criteria"/>
@@ -39,14 +35,12 @@
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="gestion.Ui.Modelo"/>
 <fullyQualifiedTypeName name="com.mysql.cj.api.x.ColumnDefinition.StaticColumnDefinition"/>
-<fullyQualifiedTypeName name="archivoImprimir.gestion.pojo.Cliente"/>
 <fullyQualifiedTypeName name="gestion.dao.OrdenTrabajoDao"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.awt.ScrollPane"/>
 <fullyQualifiedTypeName name="java.awt.dnd.MouseDragGestureRecognizer"/>
 <fullyQualifiedTypeName name="javax.swing.event.TableModelEvent"/>
 <fullyQualifiedTypeName name="javax.enterprise.inject.New"/>
-<fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="javax.swing.event.TableModelListener"/>
 <fullyQualifiedTypeName name="javax.swing.table.AbstractTableModel"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
@@ -55,9 +49,15 @@
 <fullyQualifiedTypeName name="com.google.common.collect.Lists"/>
 <fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="javax.swing.table.TableModel"/>
-<fullyQualifiedTypeName name="javax.swing.JTable"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
-<fullyQualifiedTypeName name="gestion.dao.ClienteDao"/>
 <fullyQualifiedTypeName name="com.google.common.base.Ascii"/>
+<fullyQualifiedTypeName name="java.lang.Object"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="gestion.dao.ClienteDao"/>
+<fullyQualifiedTypeName name="archivoImprimir.gestion.pojo.Cliente"/>
+<fullyQualifiedTypeName name="org.hibernate.Session"/>
+<fullyQualifiedTypeName name="javax.swing.event.ChangeListener"/>
+<fullyQualifiedTypeName name="javax.swing.JTable"/>
 </qualifiedTypeNameHistroy>

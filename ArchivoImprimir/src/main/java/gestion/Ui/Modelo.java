@@ -1,26 +1,30 @@
 package gestion.Ui;
 
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+
+import gestion.dao.ClienteDao;
 
 public class Modelo {
 
-	public AbstractTableModel model = new DefaultTableModel();
-	public JTable tabla;
-	
-	
-	public JTable crearTabla(Object[] columnas, Object[][] datos) {
-		DefaultTableModel model = new DefaultTableModel(datos,columnas);
-		JTable tabla = new JTable(model);
-		
-		return tabla;
-		}
+	public JTable crearTabla() {
 
-	public AbstractTableModel actualizarTabla(Object[] columnas, Object[][] datos){
-		System.out.println("pasando datos al modelo...");
-		DefaultTableModel model = new DefaultTableModel(datos, columnas);
-		return model;
+		Object[][] datos = ClienteDao.CLIENTES().toArray(new Object[][] {});
+		DefaultTableModel model = new DefaultTableModel(datos, ClienteDao.COLUMNAS);
+		JTable tabla = new JTable(model);
+		System.out.println("insertando tabla...");
+		return tabla;
+
+	}
+
+	public JTable crearTablaBuscados(String nombre, String apellido) {
+		ClienteDao cli = new ClienteDao();
+		Object[][] datos = cli.readCliente(nombre, apellido).toArray(new Object[][] {});
+		DefaultTableModel model = new DefaultTableModel(datos, ClienteDao.COLUMNAS);
+		JTable tabla = new JTable(model);
+		System.out.println("insertando tabla...");
+		return tabla;
+
 	}
 
 }
